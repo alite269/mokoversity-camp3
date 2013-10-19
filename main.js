@@ -16,14 +16,9 @@ var gameModule = (function(){
     ctx.beginPath();
     ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
     ctx.fill();
-        if(counter>=10)
-        {
-        }else
-        {
+
            timeoutVar = setTimeout(start,500);
-           counter ++;
-          counsole.log("Counter: "+ocunter);
-        }
+ 
     }
     return{
         start:start
