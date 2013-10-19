@@ -22,7 +22,7 @@ var gameModule = (function(){
         {
            timeoutVar = setTimeout(start,500);
            counter ++;
-          counsole.log("Counter: "+counter);
+          console.log("Counter: "+counter);
         }
     }
     return{
