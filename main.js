@@ -8,11 +8,13 @@ var gameModule = (function(){
     var ballX = Math.floor(Math.random() * 300); // 0..300
     var ballY = Math.floor(Math.random() * 400);
     var ballR = Math.floor(Math.random() * 100);
-
+    var B = Math.floor(Math.random() * 255); // 0..300
+    var G = Math.floor(Math.random() * 255);
+    var R = Math.floor(Math.random() * 255);
     canvas.width = 480;
     canvas.height = 350;
 
-    ctx.fillStyle = 'pink';
+    ctx.fillStyle = "RGB("+R+","+G+","+B+")";
     ctx.beginPath();
     ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
     ctx.fill();
