@@ -23,9 +23,9 @@ var gameModule = (function (document){
     ballX = Math.floor(Math.random() * 400); // 0..300
     ballY = Math.floor(Math.random() * 600);
     ballR = Math.floor(Math.random() * 100);
-    var B = Math.floor(Math.random() * 255); // 0..300
-    var G = Math.floor(Math.random() * 255);
-    var R = Math.floor(Math.random() * 255);
+    var B = Math.floor(Math.random() * 255),
+        G = Math.floor(Math.random() * 255),
+        R = Math.floor(Math.random() * 255);
     canvas.width = 640;
     canvas.height = 480;
 
