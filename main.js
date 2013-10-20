@@ -1,18 +1,33 @@
-var gameModule = (function(){
-    var timeoutVar,counter=0;
-    function start () {
-    
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
+/*jslint browser: true, couch: false, devel: true, node: true, closure: true */
+var gameModule = (function (document){
 
-    var ballX = Math.floor(Math.random() * 300); // 0..300
-    var ballY = Math.floor(Math.random() * 400);
-    var ballR = Math.floor(Math.random() * 100);
+    "use strict";
+
+    var counter=0,
+        ballX,
+        ballR,
+        scores,
+        ballY;
+
+    function gameOver()
+    {
+        console.log("Final: " + scores);
+    }
+
+     
+    function startGame () {
+    
+    var canvas = document.getElementById('game'),
+        ctx = canvas.getContext('2d');
+
+    ballX = Math.floor(Math.random() * 400); // 0..300
+    ballY = Math.floor(Math.random() * 600);
+    ballR = Math.floor(Math.random() * 100);
     var B = Math.floor(Math.random() * 255); // 0..300
     var G = Math.floor(Math.random() * 255);
     var R = Math.floor(Math.random() * 255);
-    canvas.width = 480;
-    canvas.height = 350;
+    canvas.width = 640;
+    canvas.height = 480;
 
     ctx.fillStyle = "RGB("+R+","+G+","+B+")";
     ctx.beginPath();
@@ -20,15 +35,34 @@ var gameModule = (function(){
     ctx.fill();
         if(counter>=10)
         {
+            gameOver();
         }else
         {
-           timeoutVar = setTimeout(start,500);
-           counter ++;
-          console.log("Counter: "+counter);
+           setTimeout(startGame, 500);
+           counter = counter + 1;
+          
         }
     }
-    return{
-        start:start
-    }
-})();
+
+        function touchEvent(evt) {
+        var x = evt.clientX,
+            y = evt.clientY,
+            tmp = (ballX - x) * (ballX - x) + (ballY - y) * (ballY - y);
+
+            console.log("Clicked: " + x + " , " + y);
+            if (tmp < ballR * ballR) {
+                scores = scores + (100 - ballR);
+                console.log("Hit ! Your scores: " + scores);
+            }
+        }
+    function start () {
+        scores = 0;
+        document.getElementById("main").addEventListener("click", touchEvent, false);
+        startGame();
+    }  
+        return{
+               start:start
+    };
+    
+}(document));
 gameModule.start();
